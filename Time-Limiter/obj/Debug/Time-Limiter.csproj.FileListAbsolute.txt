@@ -1,0 +1,14 @@
+C:\Users\khach\source\repos\TimeLimiter\Time-Limiter\obj\Debug\Time-Limiter.csprojAssemblyReference.cache
+C:\Users\khach\source\repos\TimeLimiter\Time-Limiter\obj\Debug\TimeLimiter.MainActionWindow.resources
+C:\Users\khach\source\repos\TimeLimiter\Time-Limiter\obj\Debug\TimeLimiter.MainWindow.resources
+C:\Users\khach\source\repos\TimeLimiter\Time-Limiter\obj\Debug\TimeLimiter.MainWindow_Dark.resources
+C:\Users\khach\source\repos\TimeLimiter\Time-Limiter\obj\Debug\Time_Limiter.Properties.Resources.resources
+C:\Users\khach\source\repos\TimeLimiter\Time-Limiter\obj\Debug\TimeLimiter.RestWindow.resources
+C:\Users\khach\source\repos\TimeLimiter\Time-Limiter\obj\Debug\Time-Limiter.csproj.GenerateResource.cache
+C:\Users\khach\source\repos\TimeLimiter\Time-Limiter\obj\Debug\Time-Limiter.csproj.CoreCompileInputs.cache
+C:\Users\khach\source\repos\TimeLimiter\Time-Limiter\bin\Debug\Time-Limiter.exe.config
+C:\Users\khach\source\repos\TimeLimiter\Time-Limiter\bin\Debug\Time-Limiter.exe
+C:\Users\khach\source\repos\TimeLimiter\Time-Limiter\bin\Debug\Time-Limiter.pdb
+C:\Users\khach\source\repos\TimeLimiter\Time-Limiter\obj\Debug\Time-Limiter.exe
+C:\Users\khach\source\repos\TimeLimiter\Time-Limiter\obj\Debug\Time-Limiter.pdb
+C:\Users\khach\source\repos\TimeLimiter\Time-Limiter\obj\Debug\Time_Limiter.AboutBox1.resources
