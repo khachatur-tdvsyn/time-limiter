@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\xac\\Desktop\\TimeLimiter\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{06C4B356-08A5-4B96-ADDD-A1FE90D7F8B6}|Time-Limiter\\Time-Limiter.csproj|c:\\users\\xac\\desktop\\timelimiter\\time-limiter\\mainwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{06C4B356-08A5-4B96-ADDD-A1FE90D7F8B6}|Time-Limiter\\Time-Limiter.csproj|solutionrelative:time-limiter\\mainwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{06C4B356-08A5-4B96-ADDD-A1FE90D7F8B6}|Time-Limiter\\Time-Limiter.csproj|c:\\users\\xac\\desktop\\timelimiter\\time-limiter\\mainactionwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{06C4B356-08A5-4B96-ADDD-A1FE90D7F8B6}|Time-Limiter\\Time-Limiter.csproj|solutionrelative:time-limiter\\mainactionwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06C4B356-08A5-4B96-ADDD-A1FE90D7F8B6}|Time-Limiter\\Time-Limiter.csproj|c:\\users\\xac\\desktop\\timelimiter\\time-limiter\\maincode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{06C4B356-08A5-4B96-ADDD-A1FE90D7F8B6}|Time-Limiter\\Time-Limiter.csproj|solutionrelative:time-limiter\\maincode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,18 +23,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainWindow.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\xac\\Desktop\\TimeLimiter\\Time-Limiter\\MainWindow.cs",
-              "RelativeDocumentMoniker": "Time-Limiter\\MainWindow.cs",
-              "ToolTip": "C:\\Users\\xac\\Desktop\\TimeLimiter\\Time-Limiter\\MainWindow.cs [Design]",
-              "RelativeToolTip": "Time-Limiter\\MainWindow.cs [Design]",
+              "Title": "MainActionWindow.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\xac\\Desktop\\TimeLimiter\\Time-Limiter\\MainActionWindow.cs",
+              "RelativeDocumentMoniker": "Time-Limiter\\MainActionWindow.cs",
+              "ToolTip": "C:\\Users\\xac\\Desktop\\TimeLimiter\\Time-Limiter\\MainActionWindow.cs [Design]",
+              "RelativeToolTip": "Time-Limiter\\MainActionWindow.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T19:54:36.921Z",
+              "WhenOpened": "2025-04-13T18:21:43.365Z",
               "EditorCaption": " [Design]"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainCode.cs",
+              "DocumentMoniker": "C:\\Users\\xac\\Desktop\\TimeLimiter\\Time-Limiter\\MainCode.cs",
+              "RelativeDocumentMoniker": "Time-Limiter\\MainCode.cs",
+              "ToolTip": "C:\\Users\\xac\\Desktop\\TimeLimiter\\Time-Limiter\\MainCode.cs",
+              "RelativeToolTip": "Time-Limiter\\MainCode.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T18:21:38.215Z",
+              "EditorCaption": ""
             }
           ]
         }
