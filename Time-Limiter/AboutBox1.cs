@@ -26,7 +26,7 @@ namespace Time_Limiter
         }
         void SetIfDark()
         {
-            bool isDark = Settings.Default.systemDefault ? MainWindow.GetTheme() == 0 : Settings.Default.theme;
+            bool isDark = Settings.Default.systemDefault ? Utils.GetTheme() == 0 : Settings.Default.theme;
             if (isDark)
             {
                 BackColor = Color.Black;

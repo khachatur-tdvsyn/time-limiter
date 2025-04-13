@@ -25,7 +25,7 @@ namespace TimeLimiter
             hasTimeItem = TimeSaveFiller.LoadFile() != null;
             s = TimeSaveFiller.LoadFile();
             InitializeComponent();
-            if (GetTheme() == -1)
+            if (Utils.GetTheme() == -1)
                 systemDefaultToolStripMenuItem.Visible = false;
             ToolStripMenuItem i = (ToolStripMenuItem)runProgressBarToolStripMenuItem.DropDownItems[(int)Settings.Default.progressBar];
             i.Checked = true;
@@ -36,7 +36,7 @@ namespace TimeLimiter
             if (Settings.Default.systemDefault)
             {
                 darkToolStripMenuItem.Enabled = false;
-                if (GetTheme() == 0)
+                if (Utils.GetTheme() == 0)
                     ConfigureDarkTheme();
                 else
                     ConfigureLightTheme();
@@ -109,7 +109,7 @@ namespace TimeLimiter
                 MessageBox.Show("Time setted successfully!", "Setted!");
             switched = true;
             MainActionWindow f = new MainActionWindow();
-            this.Visible = false;
+            Visible = false;
             f.Visible = !s.runInBackground;
         }
         private void timer1_Tick(object sender, EventArgs e)
@@ -125,21 +125,7 @@ namespace TimeLimiter
         {
             
         }
-        public static int GetTheme()
-        {
-            try
-            {
-                string RegistryKey = @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize";
-                int theme;
-                theme = (int)Registry.GetValue(RegistryKey, "AppsUseLightTheme", -1);
-                return theme;
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                return -1;
-            }
-        }
+
         private void darkToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Settings.Default.theme = darkToolStripMenuItem.Checked;
@@ -208,7 +194,7 @@ namespace TimeLimiter
         void OverrideMenu()
         {
             ToolStripItemCollection collection = actionsToolStripMenuItem.DropDownItems;
-            bool isDark = Settings.Default.systemDefault ? GetTheme() == 0 : Settings.Default.theme;
+            bool isDark = Settings.Default.systemDefault ? Utils.GetTheme() == 0 : Settings.Default.theme;
             foreach(ToolStripItem item in collection)
             {
                 ToolStripMenuItem menuItem = (ToolStripMenuItem)item;
@@ -233,7 +219,7 @@ namespace TimeLimiter
             darkToolStripMenuItem.Enabled = !Settings.Default.systemDefault;
             if (systemDefaultToolStripMenuItem.Checked)
             {
-                if (GetTheme() == 0)
+                if (Utils.GetTheme() == 0)
                     ConfigureDarkTheme();
                 else
                     ConfigureLightTheme();

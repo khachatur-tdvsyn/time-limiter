@@ -92,12 +92,6 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow_Dark.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainWindow_Dark.Designer.cs">
-      <DependentUpon>MainWindow_Dark.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestWindow.cs">
       <SubType>Form</SubType>
@@ -108,6 +102,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="TimerSaver.cs" />
     <Compile Include="TimeSaveFiller.cs" />
+    <Compile Include="Utils.cs" />
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,9 +111,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainWindow_Dark.resx">
-      <DependentUpon>MainWindow_Dark.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

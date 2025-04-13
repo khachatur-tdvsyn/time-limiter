@@ -22,7 +22,7 @@ namespace TimeLimiter
             restNowToolStripMenuItem.Enabled = false;
             restNowToolStripMenuItem1.Enabled = false;
             maximizeToolStripMenuItem.Text = s.runInBackground ? "Maximize" : "Minimize";
-            isLight = Settings.Default.systemDefault ? MainWindow.GetTheme() != 0 : !Settings.Default.theme;
+            isLight = Settings.Default.systemDefault ? Utils.GetTheme() != 0 : !Settings.Default.theme;
             ConfigureTheme();
             Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - Size.Width, Screen.PrimaryScreen.WorkingArea.Height - Size.Height);
             if (Settings.Default.progressBar == 0)
@@ -216,7 +216,7 @@ namespace TimeLimiter
         }
         private void ConfigureTheme()
         {
-            bool isDark = Settings.Default.systemDefault ? MainWindow.GetTheme() == 0 : Settings.Default.theme;
+            bool isDark = Settings.Default.systemDefault ? Utils.GetTheme() == 0 : Settings.Default.theme;
             if (isDark && !isLight)
             {
                 BackColor = Color.Black;
