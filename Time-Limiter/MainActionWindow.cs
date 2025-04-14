@@ -16,16 +16,21 @@ namespace TimeLimiter
         public MainActionWindow()
         {
             s = TimeSaveFiller.LoadFile();
+
             InitializeComponent();
-            OverrideNumbers();
+            MainTick();
             GetClosableData();
-            restNowToolStripMenuItem.Enabled = false;
-            restNowToolStripMenuItem1.Enabled = false;
-            maximizeToolStripMenuItem.Text = s.runInBackground ? "Maximize" : "Minimize";
-            isLight = Settings.Default.systemDefault ? Utils.GetTheme() != 0 : !Settings.Default.theme;
+            ConfigureMenu();
+
+            isLight = Settings.Default.systemDefault ? Utils.IsSystemDark() : !Settings.Default.theme;
             ConfigureTheme();
-            Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - Size.Width, Screen.PrimaryScreen.WorkingArea.Height - Size.Height);
-            if (Settings.Default.progressBar == 0)
+
+            Location = new Point(
+                Screen.PrimaryScreen.WorkingArea.Width - Size.Width,
+                Screen.PrimaryScreen.WorkingArea.Height - Size.Height
+            );
+            
+            if (Settings.Default.progressBar == (int)ProgressBarType.None)
             {
                 panel1.Visible = false;
                 thePanel.Visible = false;
@@ -33,10 +38,17 @@ namespace TimeLimiter
             timer1.Enabled = true;
             timer1.Start();
         }
+
+        private void ConfigureMenu()
+        {
+            restNowToolStripMenuItem.Enabled = false;
+            restNowToolStripMenuItem1.Enabled = false;
+            maximizeToolStripMenuItem.Text = s.runInBackground ? "Maximize" : "Minimize";
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
             if(!CheckIfInSchool())
-                OverrideNumbers();
+                MainTick();
             else
             {
                 label1.Text = "During education time the timer stopped";
@@ -44,7 +56,7 @@ namespace TimeLimiter
             if (Settings.Default.systemDefault)
                 ConfigureTheme();
         }
-        void OverrideNumbers()
+        void MainTick()
         {
             if (s.timeLeft >= s.workTime && !s.hasTimeLeft)
             {
@@ -80,15 +92,29 @@ namespace TimeLimiter
                 size = thePanel.Size.Width;
                 settedSize = true;
             }
-            string txt = ((int)Math.Floor(s.timeLeft)).ToString("D2") + ":" + ((int)(Math.Floor(s.timeLeft * 60) % 60)).ToString("D2") + " / " + Math.Floor(s.workTime) + ":00";
+
+            string txt = string.Format(
+                "{0:D2}:{1:D2}/{2:D2}:00", 
+                (int)Math.Floor(s.timeLeft), 
+                (int)(Math.Floor(s.timeLeft * 60) % 60), 
+                Math.Floor(s.workTime)
+            );
             if(Settings.Default.progressBar != 0)
             {
-                thePanel.Size = new Size(Settings.Default.progressBar == 1 ? (int)Math.Floor(s.timeLeft/s.workTime * size) : (int)Math.Floor((s.workTime - s.timeLeft)/s.workTime * size), thePanel.Size.Height);
+                thePanel.Size = new Size(
+                    Settings.Default.progressBar == (int)ProgressBarType.Normal ? 
+                    (int)Math.Floor(s.timeLeft/s.workTime * size) : 
+                    (int)Math.Floor((s.workTime - s.timeLeft)/s.workTime * size), 
+                    thePanel.Size.Height
+                );
             }
             if (!s.runInBackground)
                 label1.Text = txt;
+
             notifyIcon1.Text = "Time Limiter: " + txt;
+
             s.timeLeft += timer1.Interval / 60000.0;
+
             if ((DateTime.Now - DateTime.FromOADate(s.lastLeavedDate)).TotalMinutes >= 1)
             {
                 s.timeLeft -= (DateTime.Now - DateTime.FromOADate(s.lastLeavedDate)).TotalMinutes;

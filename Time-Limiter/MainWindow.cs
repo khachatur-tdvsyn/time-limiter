@@ -1,17 +1,8 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Drawing;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Threading;
-using Time_Limiter.Properties;
 using System.Windows.Forms;
-using System.Linq;
-using System.Text;
 using Time_Limiter;
-using System.Runtime.Remoting.Messaging;
-using System.Diagnostics;
-using System.Collections.Generic;
+using Time_Limiter.Properties;
 
 namespace TimeLimiter
 {
@@ -21,18 +12,31 @@ namespace TimeLimiter
         bool hasTimeItem = false, switched = false;
         TimerSaver currentSaver = null;
 
-        public enum ProgressBarType
-        {
-            None,
-            Normal,
-            Backwards,
-        }
         public MainWindow()
         {
             currentSaver = TimeSaveFiller.LoadFile();
             hasTimeItem = currentSaver != null;
 
             InitializeComponent();
+            ConfigureMenu();
+            ConfigureTheme(Settings.Default.systemDefault ? Utils.IsSystemDark() : Settings.Default.theme);
+            
+            if (hasTimeItem)
+            {
+                timeLeft = currentSaver.timeLeft;
+                numericUpDown1.Value = (decimal)currentSaver.workTime;
+                numericUpDown2.Value = (decimal)currentSaver.restTime;
+                checkBox1.Checked = currentSaver.runInBackground;
+            }
+            else
+            {
+                // Make warning text below invisible
+                label5.Visible = false;
+            }
+        }
+
+        private void ConfigureMenu()
+        {
             // Hide system default dark mode item if OS doesn't support dark mode
             if (Utils.GetTheme() == -1)
                 systemDefaultToolStripMenuItem.Visible = false;
@@ -46,34 +50,8 @@ namespace TimeLimiter
             checkBox2.Checked = Settings.Default.isSchoolTime;
             textBox1.Text = Settings.Default.timeProperties;
 
-
             if (Settings.Default.systemDefault)
-            {
                 darkToolStripMenuItem.Enabled = false;
-                if (Utils.GetTheme() == 0)
-                    ConfigureDarkTheme();
-                else
-                    ConfigureLightTheme();
-            }
-            else
-            {
-                if (Settings.Default.theme)
-                    ConfigureDarkTheme();
-                else
-                    ConfigureLightTheme();
-            }
-            
-            if (hasTimeItem)
-            {
-                timeLeft = currentSaver.timeLeft;
-                numericUpDown1.Value = (decimal)currentSaver.workTime;
-                numericUpDown2.Value = (decimal)currentSaver.restTime;
-                checkBox1.Checked = currentSaver.runInBackground;
-            }
-            else
-            {
-                label5.Visible = false;
-            }
         }
 
         public void SetParameters()
@@ -98,14 +76,13 @@ namespace TimeLimiter
         }
         void SetTime(bool showMessage = true)
         {
-            TimerSaver lastTimerSaver = TimeSaveFiller.LoadFile();
             TimerSaver s = new TimerSaver()
             {
-                timeLeft = lastTimerSaver == null ? 0 : lastTimerSaver.timeLeft,
+                timeLeft = currentSaver == null ? 0 : currentSaver.timeLeft,
                 hasTimeLeft = false,
                 workTime = Convert.ToDouble(numericUpDown1.Value),
                 restTime = Convert.ToDouble(numericUpDown2.Value),
-                lastLeavedDate = hasTimeItem ? lastTimerSaver.lastLeavedDate : DateTime.Now.ToOADate(),
+                lastLeavedDate = hasTimeItem ? currentSaver.lastLeavedDate : DateTime.Now.ToOADate(),
                 runInBackground = checkBox1.Checked
             };
 
@@ -116,6 +93,7 @@ namespace TimeLimiter
             TimeSaveFiller.SaveFile(s);
             if(showMessage)
                 MessageBox.Show("Time setted successfully!", "Setted!");
+
 
             switched = true;
             MainActionWindow f = new MainActionWindow();
@@ -135,11 +113,15 @@ namespace TimeLimiter
         private void darkToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Settings.Default.theme = darkToolStripMenuItem.Checked;
-            if (Settings.Default.theme)
-                ConfigureDarkTheme();
-            else
-                ConfigureLightTheme();
+            ConfigureTheme(Settings.Default.theme);
             Settings.Default.Save();
+        }
+        private void ConfigureTheme(bool isDark)
+        {
+            if (isDark)
+                ConfigureDarkTheme();
+            else 
+                ConfigureLightTheme();
         }
 
         public void ConfigureDarkTheme()
@@ -196,6 +178,11 @@ namespace TimeLimiter
             TurnOnMenuItem(runBackwardToolStripMenuItem);
             Settings.Default.Save();
         }
+        private void ChangeMenuItemColor(ToolStripMenuItem menuItem, bool isDark)
+        {
+            menuItem.BackColor = isDark ? Color.Black : Color.White;
+            menuItem.ForeColor = !isDark ? Color.Black : Color.White;
+        }
         void OverrideMenu()
         {
             ToolStripItemCollection collection = actionsToolStripMenuItem.DropDownItems;
@@ -203,16 +190,15 @@ namespace TimeLimiter
             foreach(ToolStripItem item in collection)
             {
                 ToolStripMenuItem menuItem = (ToolStripMenuItem)item;
-                menuItem.BackColor = isDark ? Color.Black : Color.White;
-                menuItem.ForeColor = !isDark ? Color.Black : Color.White;
+                ChangeMenuItemColor(menuItem, isDark);
+
                 ToolStripItemCollection inItems = menuItem.DropDownItems;
                 if(inItems.Count > 0)
                 {
                     foreach(ToolStripItem item1 in inItems)
                     {
                         ToolStripMenuItem menuItem1 = (ToolStripMenuItem)item1;
-                        menuItem1.BackColor = isDark ? Color.Black : Color.White;
-                        menuItem1.ForeColor = !isDark ? Color.Black : Color.White;
+                        ChangeMenuItemColor(menuItem1, isDark);
                     }
                 }
             }
@@ -222,20 +208,7 @@ namespace TimeLimiter
         {
             Settings.Default.systemDefault = systemDefaultToolStripMenuItem.Checked;
             darkToolStripMenuItem.Enabled = !Settings.Default.systemDefault;
-            if (systemDefaultToolStripMenuItem.Checked)
-            {
-                if (Utils.GetTheme() == 0)
-                    ConfigureDarkTheme();
-                else
-                    ConfigureLightTheme();
-            }
-            else
-            {
-                if (Settings.Default.theme)
-                    ConfigureDarkTheme();
-                else
-                    ConfigureLightTheme();
-            }
+            ConfigureTheme(Settings.Default.systemDefault ? Utils.IsSystemDark() : Settings.Default.theme);
             Settings.Default.Save();
         }
 

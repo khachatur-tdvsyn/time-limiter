@@ -20,9 +20,15 @@ using TimeLimiter;
 
 namespace TimeLimiter
 {
+    public enum ProgressBarType
+    {
+        None,
+        Normal,
+        Backwards,
+    }
     internal static class Utils
     {
-
+        public static int SYSTEM_DARK_THEME = 0;
         public static string GetOSInfo()
         {
             //Get Operating system information.
@@ -127,6 +133,11 @@ namespace TimeLimiter
             WindowsIdentity identity = WindowsIdentity.GetCurrent();
             WindowsPrincipal principal = new WindowsPrincipal(identity);
             return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
+        public static bool IsSystemDark()
+        {
+            return GetTheme() == SYSTEM_DARK_THEME;
         }
 
     }
