@@ -173,11 +173,6 @@ namespace TimeLimiter
             Application.Restart();
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
         private void editToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             rejectQuiting = false;

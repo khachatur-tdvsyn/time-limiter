@@ -1,0 +1,13 @@
+TIME LIMITER
+------------------
+Version 1.0.0.0
+KProject release
+------------------
+What application is this? This is an application that manages your work time on your computer and phone. If you pay attention, you will know that this equipment has made people addicted, which is difficult to overcome. That's why this app was created.
+
+How to use it? Once downloaded, it connects automatically without your intervention. It starts as the power supply of the equipment is connected. You can change the working and rest times by clicking the "Change" button and fill in the required working and rest times in the appropriate fields. Note: Working hours can be set at 15-150 minutes, and rest hours at 5-150 minutes.
+
+How to close the application? You can not close the application, because when you close it, it opens again. Another correction. Working and rest hours must be set quickly, as it turns on the schedule ten seconds after idle time.
+Please do not complain about this app as it is made for you. We will try to improve it every time և make it more comfortable for you.
+
+With love and respect: KProject

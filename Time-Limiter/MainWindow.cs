@@ -19,20 +19,34 @@ namespace TimeLimiter
     {
         public double timeLeft = 0;
         bool hasTimeItem = false, switched = false;
-        TimerSaver s = null;
+        TimerSaver currentSaver = null;
+
+        public enum ProgressBarType
+        {
+            None,
+            Normal,
+            Backwards,
+        }
         public MainWindow()
         {
-            hasTimeItem = TimeSaveFiller.LoadFile() != null;
-            s = TimeSaveFiller.LoadFile();
+            currentSaver = TimeSaveFiller.LoadFile();
+            hasTimeItem = currentSaver != null;
+
             InitializeComponent();
+            // Hide system default dark mode item if OS doesn't support dark mode
             if (Utils.GetTheme() == -1)
                 systemDefaultToolStripMenuItem.Visible = false;
+
+            //Check menu item of the progress bar type
             ToolStripMenuItem i = (ToolStripMenuItem)runProgressBarToolStripMenuItem.DropDownItems[(int)Settings.Default.progressBar];
             i.Checked = true;
+
             darkToolStripMenuItem.Checked = Settings.Default.theme;
             systemDefaultToolStripMenuItem.Checked = Settings.Default.systemDefault;
             checkBox2.Checked = Settings.Default.isSchoolTime;
             textBox1.Text = Settings.Default.timeProperties;
+
+
             if (Settings.Default.systemDefault)
             {
                 darkToolStripMenuItem.Enabled = false;
@@ -51,25 +65,17 @@ namespace TimeLimiter
             
             if (hasTimeItem)
             {
-                timeLeft = s.timeLeft;
-                numericUpDown1.Value = (decimal)s.workTime;
-                numericUpDown2.Value = (decimal)s.restTime;
-                checkBox1.Checked = s.runInBackground;
+                timeLeft = currentSaver.timeLeft;
+                numericUpDown1.Value = (decimal)currentSaver.workTime;
+                numericUpDown2.Value = (decimal)currentSaver.restTime;
+                checkBox1.Checked = currentSaver.runInBackground;
             }
             else
             {
                 label5.Visible = false;
             }
         }
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
         public void SetParameters()
         {
             Settings.Default.isSchoolTime = checkBox2.Checked;
@@ -77,7 +83,7 @@ namespace TimeLimiter
             Settings.Default.Save();
             
         }
-        private async void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             if (!hasTimeItem)
             {
@@ -92,23 +98,28 @@ namespace TimeLimiter
         }
         void SetTime(bool showMessage = true)
         {
+            TimerSaver lastTimerSaver = TimeSaveFiller.LoadFile();
             TimerSaver s = new TimerSaver()
             {
-                timeLeft = TimeSaveFiller.LoadFile() == null ? 0 : TimeSaveFiller.LoadFile().timeLeft,
+                timeLeft = lastTimerSaver == null ? 0 : lastTimerSaver.timeLeft,
                 hasTimeLeft = false,
                 workTime = Convert.ToDouble(numericUpDown1.Value),
                 restTime = Convert.ToDouble(numericUpDown2.Value),
-                lastLeavedDate = hasTimeItem ? TimeSaveFiller.LoadFile().lastLeavedDate : DateTime.Now.ToOADate(),
+                lastLeavedDate = hasTimeItem ? lastTimerSaver.lastLeavedDate : DateTime.Now.ToOADate(),
                 runInBackground = checkBox1.Checked
             };
+
             SetParameters();
             timer1.Stop();
             timer1.Enabled = false;
+
             TimeSaveFiller.SaveFile(s);
             if(showMessage)
                 MessageBox.Show("Time setted successfully!", "Setted!");
+
             switched = true;
             MainActionWindow f = new MainActionWindow();
+
             Visible = false;
             f.Visible = !s.runInBackground;
         }
@@ -116,14 +127,9 @@ namespace TimeLimiter
         {
             if (hasTimeItem)
             {
-                if ((DateTime.Now - DateTime.FromOADate(s.lastLeavedDate)).TotalSeconds >= 10 && !switched)
+                if ((DateTime.Now - DateTime.FromOADate(currentSaver.lastLeavedDate)).TotalSeconds >= 10 && !switched)
                     SetTime(false);
             }
-        }
-
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void darkToolStripMenuItem_Click(object sender, EventArgs e)
@@ -145,50 +151,49 @@ namespace TimeLimiter
             numericUpDown1.ForeColor = Color.White;
             numericUpDown2.BackColor = Color.Black;
             numericUpDown2.ForeColor = Color.White;
+
             button1.BackColor = Color.FromArgb(64, 64, 64);
             button1.ForeColor = Color.White;
+
             checkBox1.BackColor = Color.Black;
             checkBox1.ForeColor = Color.White;
             checkBox2.BackColor = Color.Black;
             checkBox2.ForeColor = Color.White;
+
             textBox1.BackColor = Color.Black;
             textBox1.ForeColor = Color.White;
+
             OverrideMenu();
+        }
+
+        private void TurnOnMenuItem(ToolStripMenuItem menuItem)
+        {
+            ToolStripItemCollection c = menuItem.GetCurrentParent().Items;
+            foreach (ToolStripItem i in c)
+            {
+                ToolStripMenuItem item = (ToolStripMenuItem)i;
+                item.Checked = item == menuItem;
+            }
         }
 
         private void noneToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Settings.Default.progressBar = 0;
-            ToolStripItemCollection c = noneToolStripMenuItem.GetCurrentParent().Items;
-            foreach(ToolStripItem i in c)
-            {
-                ToolStripMenuItem item = (ToolStripMenuItem)i;
-                item.Checked = item == noneToolStripMenuItem;
-            }
+            Settings.Default.progressBar = (int)ProgressBarType.None;
+            TurnOnMenuItem(noneToolStripMenuItem);
             Settings.Default.Save();
         }
 
         private void runNormallyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Settings.Default.progressBar = 1;
-            ToolStripItemCollection c = noneToolStripMenuItem.GetCurrentParent().Items;
-            foreach (ToolStripItem i in c)
-            {
-                ToolStripMenuItem item = (ToolStripMenuItem)i;
-                item.Checked = item == runNormallyToolStripMenuItem;
-            }
+            Settings.Default.progressBar = (int)ProgressBarType.Normal;
+            TurnOnMenuItem(runNormallyToolStripMenuItem);
             Settings.Default.Save();
         }
 
         private void runBackwardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Settings.Default.progressBar = 2;
-            ToolStripItemCollection c = noneToolStripMenuItem.GetCurrentParent().Items;
-            foreach (ToolStripItem i in c)
-            {
-                ToolStripMenuItem item = (ToolStripMenuItem)i;
-                item.Checked = item == runBackwardToolStripMenuItem;
-            }
+            Settings.Default.progressBar = (int)ProgressBarType.Backwards;
+            TurnOnMenuItem(runBackwardToolStripMenuItem);
             Settings.Default.Save();
         }
         void OverrideMenu()
@@ -234,18 +239,6 @@ namespace TimeLimiter
             Settings.Default.Save();
         }
 
-        private void helpToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            byte[] file = Resources.helptext;
-            string txt = "";
-            for (int i = 0; i < file.Length; i++)
-            {
-                txt += (char)file[i];
-            }
-            txt = HCrypter.Decrypt(txt, 2, false);
-            MessageBox.Show(txt, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
         private void aboutThisAppToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form aboutBox = new AboutBox1();
@@ -257,18 +250,23 @@ namespace TimeLimiter
         {
             BackColor = Color.White;
             ForeColor = Color.Black;
+
             numericUpDown1.BackColor = Color.White;
             numericUpDown1.ForeColor = Color.Black;
             numericUpDown2.BackColor = Color.White;
             numericUpDown2.ForeColor = Color.Black;
+
             button1.BackColor = Color.LightGray;
             button1.ForeColor = Color.Black;
+
             checkBox1.BackColor = Color.Transparent;
             checkBox1.ForeColor = Color.Black;
             checkBox2.BackColor = Color.Transparent;
             checkBox2.ForeColor = Color.Black;
+
             textBox1.BackColor = Color.White;
             textBox1.ForeColor = Color.Black;
+
             OverrideMenu();
         }
     }

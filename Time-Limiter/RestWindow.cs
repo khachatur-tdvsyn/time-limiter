@@ -28,6 +28,7 @@ namespace TimeLimiter
         }
         private void OverrideNumbers()
         {
+            // Check if rest time expired and this window can go down
             if (s.restTimeDate <= DateTime.Now.ToOADate() && s.hasTimeLeft)
             {
                 s.hasTimeLeft = false;
@@ -37,11 +38,6 @@ namespace TimeLimiter
             }
             double seconds = (DateTime.FromOADate(s.restTimeDate) - DateTime.Now).TotalSeconds;
             label2.Text = Math.Floor(seconds / 60) + " minutes and " + ((int)(Math.Floor(seconds)%60)).ToString("D2")+" seconds left for use device again.";
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

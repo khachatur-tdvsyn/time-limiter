@@ -136,7 +136,6 @@ namespace TimeLimiter
             this.label3.Size = new System.Drawing.Size(134, 20);
             this.label3.TabIndex = 4;
             this.label3.Text = "Work Time (min)";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -220,7 +219,7 @@ namespace TimeLimiter
             this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1.Location = new System.Drawing.Point(200, 343);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(146, 21);
+            this.checkBox1.Size = new System.Drawing.Size(137, 20);
             this.checkBox1.TabIndex = 10;
             this.checkBox1.Text = "Run in background";
             this.checkBox1.UseVisualStyleBackColor = false;
@@ -234,7 +233,7 @@ namespace TimeLimiter
             this.actionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(682, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(682, 28);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -248,7 +247,7 @@ namespace TimeLimiter
             this.actionsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
             this.actionsToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
-            this.actionsToolStripMenuItem.Size = new System.Drawing.Size(62, 26);
+            this.actionsToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
             this.actionsToolStripMenuItem.Text = "Actions";
             // 
             // runProgressBarToolStripMenuItem
@@ -260,7 +259,7 @@ namespace TimeLimiter
             this.runBackwardToolStripMenuItem});
             this.runProgressBarToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.runProgressBarToolStripMenuItem.Name = "runProgressBarToolStripMenuItem";
-            this.runProgressBarToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
+            this.runProgressBarToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.runProgressBarToolStripMenuItem.Text = "Run progress bar";
             // 
             // noneToolStripMenuItem
@@ -268,7 +267,7 @@ namespace TimeLimiter
             this.noneToolStripMenuItem.BackColor = System.Drawing.Color.Red;
             this.noneToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.noneToolStripMenuItem.Name = "noneToolStripMenuItem";
-            this.noneToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.noneToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.noneToolStripMenuItem.Text = "None";
             this.noneToolStripMenuItem.Click += new System.EventHandler(this.noneToolStripMenuItem_Click);
             // 
@@ -277,7 +276,7 @@ namespace TimeLimiter
             this.runNormallyToolStripMenuItem.BackColor = System.Drawing.Color.Red;
             this.runNormallyToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.runNormallyToolStripMenuItem.Name = "runNormallyToolStripMenuItem";
-            this.runNormallyToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.runNormallyToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.runNormallyToolStripMenuItem.Text = "Run normally";
             this.runNormallyToolStripMenuItem.Click += new System.EventHandler(this.runNormallyToolStripMenuItem_Click);
             // 
@@ -286,7 +285,7 @@ namespace TimeLimiter
             this.runBackwardToolStripMenuItem.BackColor = System.Drawing.Color.Red;
             this.runBackwardToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.runBackwardToolStripMenuItem.Name = "runBackwardToolStripMenuItem";
-            this.runBackwardToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
+            this.runBackwardToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.runBackwardToolStripMenuItem.Text = "Run backward";
             this.runBackwardToolStripMenuItem.Click += new System.EventHandler(this.runBackwardToolStripMenuItem_Click);
             // 
@@ -298,7 +297,7 @@ namespace TimeLimiter
             this.systemDefaultToolStripMenuItem});
             this.switchThemeToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.switchThemeToolStripMenuItem.Name = "switchThemeToolStripMenuItem";
-            this.switchThemeToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
+            this.switchThemeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.switchThemeToolStripMenuItem.Text = "Switch theme";
             // 
             // darkToolStripMenuItem
@@ -307,7 +306,7 @@ namespace TimeLimiter
             this.darkToolStripMenuItem.CheckOnClick = true;
             this.darkToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.darkToolStripMenuItem.Name = "darkToolStripMenuItem";
-            this.darkToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
+            this.darkToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.darkToolStripMenuItem.Text = "Is Dark";
             this.darkToolStripMenuItem.Click += new System.EventHandler(this.darkToolStripMenuItem_Click);
             // 
@@ -317,7 +316,7 @@ namespace TimeLimiter
             this.systemDefaultToolStripMenuItem.CheckOnClick = true;
             this.systemDefaultToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.systemDefaultToolStripMenuItem.Name = "systemDefaultToolStripMenuItem";
-            this.systemDefaultToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
+            this.systemDefaultToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.systemDefaultToolStripMenuItem.Text = "System default";
             this.systemDefaultToolStripMenuItem.Click += new System.EventHandler(this.systemDefaultToolStripMenuItem_Click);
             // 
@@ -326,7 +325,7 @@ namespace TimeLimiter
             this.aboutThisAppToolStripMenuItem.BackColor = System.Drawing.Color.Red;
             this.aboutThisAppToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.aboutThisAppToolStripMenuItem.Name = "aboutThisAppToolStripMenuItem";
-            this.aboutThisAppToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
+            this.aboutThisAppToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.aboutThisAppToolStripMenuItem.Text = "About this app";
             this.aboutThisAppToolStripMenuItem.Click += new System.EventHandler(this.aboutThisAppToolStripMenuItem_Click);
             // 
