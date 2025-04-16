@@ -47,20 +47,11 @@ namespace TimeLimiter
 
             darkToolStripMenuItem.Checked = Settings.Default.theme;
             systemDefaultToolStripMenuItem.Checked = Settings.Default.systemDefault;
-            checkBox2.Checked = Settings.Default.isSchoolTime;
-            textBox1.Text = Settings.Default.timeProperties;
 
             if (Settings.Default.systemDefault)
                 darkToolStripMenuItem.Enabled = false;
         }
 
-        public void SetParameters()
-        {
-            Settings.Default.isSchoolTime = checkBox2.Checked;
-            Settings.Default.timeProperties = textBox1.Text;
-            Settings.Default.Save();
-            
-        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (!hasTimeItem)
@@ -86,7 +77,6 @@ namespace TimeLimiter
                 runInBackground = checkBox1.Checked
             };
 
-            SetParameters();
             timer1.Stop();
             timer1.Enabled = false;
 
@@ -139,11 +129,6 @@ namespace TimeLimiter
 
             checkBox1.BackColor = Color.Black;
             checkBox1.ForeColor = Color.White;
-            checkBox2.BackColor = Color.Black;
-            checkBox2.ForeColor = Color.White;
-
-            textBox1.BackColor = Color.Black;
-            textBox1.ForeColor = Color.White;
 
             OverrideMenu();
         }
@@ -234,11 +219,6 @@ namespace TimeLimiter
 
             checkBox1.BackColor = Color.Transparent;
             checkBox1.ForeColor = Color.Black;
-            checkBox2.BackColor = Color.Transparent;
-            checkBox2.ForeColor = Color.Black;
-
-            textBox1.BackColor = Color.White;
-            textBox1.ForeColor = Color.Black;
 
             OverrideMenu();
         }

@@ -81,9 +81,6 @@ namespace TimeLimiter
             this.darkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemDefaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutThisAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -96,7 +93,7 @@ namespace TimeLimiter
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(49, 327);
+            this.button1.Location = new System.Drawing.Point(49, 259);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 50);
@@ -204,7 +201,7 @@ namespace TimeLimiter
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(43, 392);
+            this.label5.Location = new System.Drawing.Point(43, 324);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(450, 20);
             this.label5.TabIndex = 9;
@@ -217,7 +214,7 @@ namespace TimeLimiter
             this.checkBox1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox1.Cursor = System.Windows.Forms.Cursors.Default;
             this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox1.Location = new System.Drawing.Point(200, 343);
+            this.checkBox1.Location = new System.Drawing.Point(200, 275);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(137, 20);
             this.checkBox1.TabIndex = 10;
@@ -259,7 +256,7 @@ namespace TimeLimiter
             this.runBackwardToolStripMenuItem});
             this.runProgressBarToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.runProgressBarToolStripMenuItem.Name = "runProgressBarToolStripMenuItem";
-            this.runProgressBarToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.runProgressBarToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
             this.runProgressBarToolStripMenuItem.Text = "Run progress bar";
             // 
             // noneToolStripMenuItem
@@ -267,7 +264,7 @@ namespace TimeLimiter
             this.noneToolStripMenuItem.BackColor = System.Drawing.Color.Red;
             this.noneToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.noneToolStripMenuItem.Name = "noneToolStripMenuItem";
-            this.noneToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.noneToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
             this.noneToolStripMenuItem.Text = "None";
             this.noneToolStripMenuItem.Click += new System.EventHandler(this.noneToolStripMenuItem_Click);
             // 
@@ -276,7 +273,7 @@ namespace TimeLimiter
             this.runNormallyToolStripMenuItem.BackColor = System.Drawing.Color.Red;
             this.runNormallyToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.runNormallyToolStripMenuItem.Name = "runNormallyToolStripMenuItem";
-            this.runNormallyToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.runNormallyToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
             this.runNormallyToolStripMenuItem.Text = "Run normally";
             this.runNormallyToolStripMenuItem.Click += new System.EventHandler(this.runNormallyToolStripMenuItem_Click);
             // 
@@ -285,7 +282,7 @@ namespace TimeLimiter
             this.runBackwardToolStripMenuItem.BackColor = System.Drawing.Color.Red;
             this.runBackwardToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.runBackwardToolStripMenuItem.Name = "runBackwardToolStripMenuItem";
-            this.runBackwardToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.runBackwardToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
             this.runBackwardToolStripMenuItem.Text = "Run backward";
             this.runBackwardToolStripMenuItem.Click += new System.EventHandler(this.runBackwardToolStripMenuItem_Click);
             // 
@@ -297,7 +294,7 @@ namespace TimeLimiter
             this.systemDefaultToolStripMenuItem});
             this.switchThemeToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.switchThemeToolStripMenuItem.Name = "switchThemeToolStripMenuItem";
-            this.switchThemeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.switchThemeToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
             this.switchThemeToolStripMenuItem.Text = "Switch theme";
             // 
             // darkToolStripMenuItem
@@ -306,7 +303,7 @@ namespace TimeLimiter
             this.darkToolStripMenuItem.CheckOnClick = true;
             this.darkToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.darkToolStripMenuItem.Name = "darkToolStripMenuItem";
-            this.darkToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.darkToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
             this.darkToolStripMenuItem.Text = "Is Dark";
             this.darkToolStripMenuItem.Click += new System.EventHandler(this.darkToolStripMenuItem_Click);
             // 
@@ -316,7 +313,7 @@ namespace TimeLimiter
             this.systemDefaultToolStripMenuItem.CheckOnClick = true;
             this.systemDefaultToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.systemDefaultToolStripMenuItem.Name = "systemDefaultToolStripMenuItem";
-            this.systemDefaultToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.systemDefaultToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
             this.systemDefaultToolStripMenuItem.Text = "System default";
             this.systemDefaultToolStripMenuItem.Click += new System.EventHandler(this.systemDefaultToolStripMenuItem_Click);
             // 
@@ -325,55 +322,9 @@ namespace TimeLimiter
             this.aboutThisAppToolStripMenuItem.BackColor = System.Drawing.Color.Red;
             this.aboutThisAppToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.aboutThisAppToolStripMenuItem.Name = "aboutThisAppToolStripMenuItem";
-            this.aboutThisAppToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.aboutThisAppToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
             this.aboutThisAppToolStripMenuItem.Text = "About this app";
             this.aboutThisAppToolStripMenuItem.Click += new System.EventHandler(this.aboutThisAppToolStripMenuItem_Click);
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.Location = new System.Drawing.Point(43, 225);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(138, 24);
-            this.checkBox2.TabIndex = 15;
-            this.checkBox2.Text = "Edutaion mode";
-            this.checkBox2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(45, 261);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(129, 20);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Education times";
-            // 
-            // textBox1
-            // 
-            this.textBox1.AccessibleDescription = "";
-            this.textBox1.AccessibleName = "";
-            this.textBox1.AutoCompleteCustomSource.AddRange(new string[] {
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday"});
-            this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(200, 261);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(437, 76);
-            this.textBox1.TabIndex = 17;
             // 
             // MainWindow
             // 
@@ -381,10 +332,7 @@ namespace TimeLimiter
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(682, 453);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.checkBox2);
+            this.ClientSize = new System.Drawing.Size(682, 364);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.numericUpDown2);
@@ -431,9 +379,6 @@ namespace TimeLimiter
         private ToolStripMenuItem runNormallyToolStripMenuItem;
         private ToolStripMenuItem runBackwardToolStripMenuItem;
         private ToolStripMenuItem runProgressBarToolStripMenuItem;
-        private CheckBox checkBox2;
-        private Label label6;
-        private TextBox textBox1;
     }
 }
 

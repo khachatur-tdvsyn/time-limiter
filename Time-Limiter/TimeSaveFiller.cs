@@ -71,7 +71,15 @@ namespace TimeLimiter
             }
             catch (Exception e)
             {
-                return DeserializeTimeSaver_Old(value);
+                try {
+                    return DeserializeTimeSaver_Old(value);
+                }
+                catch(Exception e2)
+                {
+                    // Temporary logging
+                    //MessageBox.Show(e2.ToString());
+                    return null;
+                }
             }
         }
 

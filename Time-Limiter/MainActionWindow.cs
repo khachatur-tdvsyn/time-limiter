@@ -12,7 +12,7 @@ namespace TimeLimiter
         bool showedNotification = false, settedSize = false;
         int size = 146;
         private bool rejectQuiting = true;
-        public bool isLight;
+        public bool isDark;
         public MainActionWindow()
         {
             s = TimeSaveFiller.LoadFile();
@@ -22,7 +22,7 @@ namespace TimeLimiter
             GetClosableData();
             ConfigureMenu();
 
-            isLight = Settings.Default.systemDefault ? Utils.IsSystemDark() : !Settings.Default.theme;
+            isDark = Settings.Default.systemDefault ? Utils.IsSystemDark() : Settings.Default.theme;
             ConfigureTheme();
 
             Location = new Point(
@@ -47,13 +47,9 @@ namespace TimeLimiter
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(!CheckIfInSchool())
-                MainTick();
-            else
-            {
-                label1.Text = "During education time the timer stopped";
-            }
-            if (Settings.Default.systemDefault)
+            MainTick();
+
+            if (Settings.Default.systemDefault && Utils.IsSystemDark() != isDark)
                 ConfigureTheme();
         }
         void MainTick()
@@ -97,7 +93,7 @@ namespace TimeLimiter
                 "{0:D2}:{1:D2}/{2:D2}:00", 
                 (int)Math.Floor(s.timeLeft), 
                 (int)(Math.Floor(s.timeLeft * 60) % 60), 
-                Math.Floor(s.workTime)
+                (int)Math.Floor(s.workTime)
             );
             if(Settings.Default.progressBar != 0)
             {
@@ -140,35 +136,7 @@ namespace TimeLimiter
         {
             mousePressed = true;
         }
-        public bool CheckIfInSchool()
-        {
-            if (!Settings.Default.isSchoolTime)
-                return false;
-            else
-            {
-                string[] arguments = Settings.Default.timeProperties.Split(' ');
-                List<string> values = new List<string>(new string[] { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" });
-                for (int i = 0; i < arguments.Length; i++)
-                {
-                    int index = values.IndexOf(arguments[i]);
-                    if (index >= 0)
-                    {
-                        if ((int)DateTime.Now.DayOfWeek == index)
-                        {
-                            string[] hourMinute1 = arguments[i + 1].Split(':'), hourMinute2 = arguments[i+2].Split(':');
-                            int time1 = int.Parse(hourMinute1[0]) * 60 + int.Parse(hourMinute1[1]), time2 = int.Parse(hourMinute2[0]) * 60 + int.Parse(hourMinute2[1]);
-                            if (time1 > time2)
-                            {
-                                time2 += 24 * 60;
-                            }
-                            if(time1 < (DateTime.Now.Hour * 60 + DateTime.Now.Minute) && (DateTime.Now.Hour * 60 + DateTime.Now.Minute) < time2)
-                            return true;
-                        }
-                    }
-                }
-                return false;
-            }
-        }
+        
         private void restNowToolStripMenuItem_Click(object sender, EventArgs e)
         {
             s.hasTimeLeft = true;
@@ -238,13 +206,15 @@ namespace TimeLimiter
         private void ConfigureTheme()
         {
             bool isDark = Settings.Default.systemDefault ? Utils.GetTheme() == 0 : Settings.Default.theme;
-            if (isDark && !isLight)
+            if (isDark)
             {
-                BackColor = Color.Black;
-                ForeColor = Color.White;
+                base.BackColor = Color.Black;
+                base.ForeColor = Color.White;
+
                 ToolStripItemCollection items = editToolStripMenuItem1.DropDownItems, contextItems = contextMenuStrip1.Items;
                 menuStrip1.BackColor = Color.Black;
                 menuStrip1.ForeColor = Color.White;
+                
                 foreach(ToolStripItem item in items)
                 {
                     ToolStripMenuItem nitem = (ToolStripMenuItem)item;
@@ -257,13 +227,13 @@ namespace TimeLimiter
                     nitem.BackColor = Color.Black;
                     nitem.ForeColor = Color.White;
                 }
-                isLight = !isLight;
+
                 panel1.BackColor = Color.FromArgb(64, 64, 64);
             }
-            else if(!isDark && isLight)
+            else if(!isDark)
             {
-                BackColor = Color.White;
-                ForeColor = Color.Black;
+                base.BackColor = Color.White;
+                base.ForeColor = Color.Black;
                 ToolStripItemCollection items = editToolStripMenuItem1.DropDownItems, contextItems = contextMenuStrip1.Items;
                 menuStrip1.BackColor = Color.White;
                 menuStrip1.ForeColor = Color.Black;
@@ -279,9 +249,10 @@ namespace TimeLimiter
                     nitem.BackColor = Color.White;
                     nitem.ForeColor = Color.Black;
                 }
-                isLight = !isLight;
+                
                 panel1.BackColor = Color.FromArgb(128, 128, 128);
             }
+            this.isDark = isDark;
         }
     }
 }
